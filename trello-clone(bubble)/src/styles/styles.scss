@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap');
+
+body{
+    margin: 0;
+    background: url(../images/blur-back.jpg) top/cover no-repeat;
+    height: 100vh;
+}
+
+.wrapper{
+    display: grid;
+    grid-template-rows: 11% 89%;
+    height: 100%;
+
+    &__header{
+        display: grid;
+        grid-template-columns: 80% 20%;
+
+        align-items: center;
+
+        box-sizing: border-box;
+        padding: 0 41px;
+    }
+
+    &__board{
+        background-color: rgba(248, 240, 251, 0.404);
+        border-radius: 50px;
+        box-shadow: 0 -3px 30px #13243b;
+    }
+}
+
+@import url(../styles/header.scss);
+@import url(../styles/board.scss);
+@import url(../styles/add-column.scss);

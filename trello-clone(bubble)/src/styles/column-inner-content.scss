@@ -1,0 +1,54 @@
+.inner-content-holder{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-add-button{
+    width: 80%;
+    // margin: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+
+    border: none;
+    border-radius: 20px;
+    // background-color: #ffffffcc;
+
+    background: linear-gradient(to right, #acacff, #efa6ff, #c19aff);
+    background-size: 200%;
+    color: #440f48;
+
+
+    font-size: 20px;
+    font-family: 'Neucha', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+
+    &:hover{
+        background-position: right;
+    }
+}
+
+.delete-all-button{
+    color: #440f48;
+    font-family: 'Neucha', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+
+    border: none;
+    border-radius: 0 0 50px 50px;
+
+    margin-top: 20px;
+
+    cursor: pointer;
+}
+
+//card
