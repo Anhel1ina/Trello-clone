@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap');
-
 body{
     margin: 0;
     background: url(../images/blur-back.jpg) top/cover no-repeat;
@@ -31,3 +29,5 @@ body{
 @import url(../styles/header.scss);
 @import url(../styles/board.scss);
 @import url(../styles/add-column.scss);
+@import url(../styles/modals.scss);
+@import url(../styles/task-card.scss);

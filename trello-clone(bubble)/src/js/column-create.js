@@ -1,8 +1,10 @@
-import { createDivPargFormElement, createInputElement } from "./add-elem-func";
-import {innerBoardBlock, boardsBlock } from "./main";
+import { createDivPargFormElement, createInputElement, createModal} from "./add-elem-func";
+import { editColumnName } from "./functions";
+import {innerBoardBlock, boardsBlock} from "./main";
+import { arrayOfColumns } from "./variables";
 
 let columnId = 100
-export function Column(){
+export function Column(name){
     const columnContainer = document.createElement('div')
     columnContainer.className = 'columns__col-wrapper col-wrapper'
     columnContainer.id = columnId++
@@ -10,7 +12,9 @@ export function Column(){
     const columnName = createInputElement('col-header__name', 'input', '', columnHeader)
     columnName.placeholder = 'Enter Column Name'
 
-    // columnName.value = nameOfColumn
+    if(!(name === undefined)){
+        columnName.value = name
+    }
     columnName.id = 'column-name' + columnContainer.id
     columnName.addEventListener('change', () => {
         if(!(columnName.value === '')){
@@ -22,6 +26,7 @@ export function Column(){
     const editButton = createDivPargFormElement('div', 'col-header__edit-button', columnHeader)
     editButton.addEventListener('click', () => {
         columnName.disabled = false
+        editColumnName(columnName)
     })
 
     countOfTask.innerText = 0
@@ -36,6 +41,10 @@ export function Column(){
     
     
     const addCardButton = createDivPargFormElement('button', 'inner-content-holder__add-button card-add-button', innerContentHolder)
+    addCardButton.addEventListener('click', () => {
+        const taskCard = createDivPargFormElement('div', 'column-card__task-card task-card', cardContainer)
+
+    })
 
     const iconAddCardButton = createDivPargFormElement('p', 'card-add-button__icon', addCardButton)
     iconAddCardButton.innerText = '+'
@@ -49,7 +58,32 @@ export function Column(){
     const textDeleteAllBUtton = createDivPargFormElement('p', 'delete-all-button__text', deleteAllButton)
     textDeleteAllBUtton.innerText = 'delete all'
 
+    deleteAllButton.addEventListener('click', () => {
+        document.querySelector('.modalDeleteAll').classList.add('modal-show')
+
+        document.querySelector('.modalDeleteAll').addEventListener('click', (event) => {
+            if(event.target === document.querySelector('.modalDeleteAll__holder_cancel')){
+                document.querySelector('.modalDeleteAll').classList.remove('modal-show')
+            }
+            else if(event.target === document.querySelector('.modalDeleteAll__holder_confirm')){
+                const columnToDelete = deleteAllButton.parentElement
+                columnToDelete.remove()
+
+                arrayOfColumns.forEach((column, index) => {
+                    if(columnToDelete === column.columnContainer){
+                        let deleteColumn = arrayOfColumns.splice(index, 1)
+                    }
+                })
+                document.querySelector('.modalDeleteAll').classList.remove('modal-show')
+            }
+        })
+    })
+
     this.id = columnContainer.id
     this.columnName = columnName
+    this.deleteAllButton = deleteAllButton
+
     this.columnContainer = columnContainer
 }
+
+

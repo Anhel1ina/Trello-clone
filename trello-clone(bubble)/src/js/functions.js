@@ -15,3 +15,10 @@ export const updateTime = (timeBlock) => {
     }, 1000)
 }
 
+
+export const editColumnName = (columnNameField) => {
+    columnNameField.classList.remove('highlight-column-name')
+    setTimeout(() => {
+        columnNameField.classList.add('highlight-column-name')
+    }, 10);
+}

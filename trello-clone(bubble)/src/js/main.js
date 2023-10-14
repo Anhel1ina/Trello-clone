@@ -1,8 +1,9 @@
-import { createDivPargFormElement, createInputElement } from "./add-elem-func";
-import { updateDate, updateTime} from "./functions";
+import { createDivPargFormElement, createInputElement, createModal } from "./add-elem-func";
+import { updateDate, updateTime, editColumnName} from "./functions";
 import { Column } from "./column-create";
 import { arrayOfColumns, columnStorageKey } from "./variables";
 
+export const modalWarning = createModal()
 
 root.className = 'wrapper'
 const headerBlock = createDivPargFormElement('div', 'wrapper__header header-block', root)
@@ -44,22 +45,27 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 
-// window.addEventListener('load', () => {
-//     const savedData = JSON.parse(localStorage.getItem(columnStorageKey)) ?? []
-//     for(let i = 0; i < savedData.length; i++){
-//         const column = new Column(savedData[i].nameOfColumn)
-//         arrayOfColumns.push(column)
-//         document.body.querySelector('.columns').append(column.columnContainer)
-//     }
-// })
+//saving and uploading 
+
+const URL1 = 'https://652a6bdc4791d884f1fce7bd.mockapi.io/columns'
 
 
-// window.addEventListener('beforeunload', () => {
-//     const storageColumnsData = arrayOfColumns.map(column => {
-//         return{
-//             idOfColumn: column.id,
-//             nameOfColumn: column.columnName.value
-//         }
-//     })
-//     localStorage.setItem(columnStorageKey, JSON.stringify(storageColumnsData))
-// })
+window.addEventListener('load', () => {
+    const savedData = JSON.parse(localStorage.getItem(columnStorageKey)) ?? []
+    for(let i = 0; i < savedData.length; i++){
+        const column = new Column(savedData[i].nameOfColumn)
+        arrayOfColumns.push(column)
+        document.body.querySelector('.columns').append(column.columnContainer)
+    }
+})
+
+
+window.addEventListener('beforeunload', () => {
+    const storageColumnsData = arrayOfColumns.map(column => {
+        return{
+            idOfColumn: column.id,
+            nameOfColumn: column.columnName.value
+        }
+    })
+    localStorage.setItem(columnStorageKey, JSON.stringify(storageColumnsData))
+})
