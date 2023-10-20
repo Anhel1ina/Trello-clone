@@ -1,8 +1,129 @@
 .task-card{
     width: 100%;
-    height: 200px;
+    height: 180px;
     margin-bottom: 15px;
     border-radius: 20px;
-    background-color: aquamarine;
+    background-color: rgba(0, 0, 0, 0.271);
 
+    box-sizing: border-box;
+    padding: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 30% 40% 30%;
+
+    &__header{
+        grid-column: 1/3;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+
+        &_time{
+            grid-column: 2/3;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 500;
+            color: #fffc;
+
+            align-self: center;
+            justify-self: center;
+
+            cursor: default;
+        }
+    }
+
+    // &__description{
+    //     grid-column: 1/3;
+    //     text-align: top left;
+    //     resize: none;
+    //     outline: none;
+
+    //     font-family: 'Raleway', sans-serif;
+    //     font-size: 18px;
+
+    //     border: 1px solid #fffc;
+    //     color: #fffc;
+    //     border-radius: 5px;
+    //     background-color: transparent;
+
+    //     text-overflow: ellipsis;
+    // }
+    &__title{
+        grid-column: 1/3;
+        border-radius: 10px;
+        font-size: 24px;
+        color: #fffc;
+
+        border: none;
+        background-color: transparent;
+        font-family: 'Raleway', sans-serif;
+        outline: none;
+
+        text-overflow: ellipsis;
+    }
+
+    &__footer{
+        display: grid;
+        grid-column: 1/3;
+        grid-template-columns: 60% 40%;
+    }
+}
+
+input::-webkit-input-placeholder{ 
+    color: #fffc;
+}
+
+.task-card__header{
+    &_buttons button{
+        font-size: 18px;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 500;
+        color: #440f48;
+        background-color: transparent;
+
+        box-sizing: border-box;
+        padding: 3px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        transition: all .5s ease-in-out;
+
+        &:nth-child(n + 2){
+            margin-left: 10px;
+        }
+
+        &:hover{
+            // box-shadow: 0 0 15px #13243b91;
+            background-color: #fffc;
+        }
+    }
+}
+
+.task-card__footer{
+    margin-top: 10px;
+    &_users{
+        background-color: rgba(255, 255, 255, 0.547);
+        border-radius: 20px;
+        width: 80%;
+    }
+
+    &_colors{
+        border: none;
+        font-size: 20px;
+        background-color: rgba(255, 255, 255, 0.547);
+        color: #440f48;
+
+        box-sizing: border-box;
+        padding-bottom: 10px;
+        border-radius: 50%;
+        width: 30%;
+        
+        align-self: center;
+        justify-self: right;
+
+        cursor: pointer;
+    }
 }

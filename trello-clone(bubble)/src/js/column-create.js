@@ -1,10 +1,12 @@
 import { createDivPargFormElement, createInputElement, createModal} from "./add-elem-func";
 import { editColumnName } from "./functions";
 import {innerBoardBlock, boardsBlock} from "./main";
-import { arrayOfColumns } from "./variables";
+import { arrayOfCards, arrayOfColumns } from "./variables";
+import { Card } from "./card-create";
+
 
 let columnId = 100
-export function Column(name){
+export function Column(name, countTask){
     const columnContainer = document.createElement('div')
     columnContainer.className = 'columns__col-wrapper col-wrapper'
     columnContainer.id = columnId++
@@ -12,24 +14,30 @@ export function Column(name){
     const columnName = createInputElement('col-header__name', 'input', '', columnHeader)
     columnName.placeholder = 'Enter Column Name'
 
+    columnName.id = 'column-name' + columnContainer.id
+
     if(!(name === undefined)){
         columnName.value = name
     }
-    columnName.id = 'column-name' + columnContainer.id
-    columnName.addEventListener('change', () => {
-        if(!(columnName.value === '')){
+    
+    if(columnName.value){
+        columnName.disabled = true
+    }
+
+    columnName.addEventListener('focusout', () => {
+        if(columnName.value){
             columnName.disabled = true
-        }
+        } 
     })
 
     const countOfTask = createDivPargFormElement('p', 'col-header__count', columnHeader)
     const editButton = createDivPargFormElement('div', 'col-header__edit-button', columnHeader)
     editButton.addEventListener('click', () => {
-        columnName.disabled = false
+        columnName.disabled ? columnName.disabled = false : columnName.disabled = true
         editColumnName(columnName)
     })
 
-    countOfTask.innerText = 0
+    countTask ? countOfTask.innerText = countTask : countOfTask.innerText = 0
 
     //cards-holder inner-content
     const innerContentHolder = createDivPargFormElement('div', 'col-wrapper__inner-content-holder inner-content-holder', columnContainer)
@@ -42,8 +50,14 @@ export function Column(name){
     
     const addCardButton = createDivPargFormElement('button', 'inner-content-holder__add-button card-add-button', innerContentHolder)
     addCardButton.addEventListener('click', () => {
-        const taskCard = createDivPargFormElement('div', 'column-card__task-card task-card', cardContainer)
+        const card = new Card()
+        card.idForColumn = columnContainer.id
 
+        cardContainer.append(card.taskCard)
+        arrayOfCards.push(card)
+
+        console.log(arrayOfCards)
+        countOfTask.innerText++
     })
 
     const iconAddCardButton = createDivPargFormElement('p', 'card-add-button__icon', addCardButton)
@@ -71,7 +85,7 @@ export function Column(name){
 
                 arrayOfColumns.forEach((column, index) => {
                     if(columnToDelete === column.columnContainer){
-                        let deleteColumn = arrayOfColumns.splice(index, 1)
+                        arrayOfColumns.splice(index, 1)
                     }
                 })
                 document.querySelector('.modalDeleteAll').classList.remove('modal-show')
@@ -82,8 +96,8 @@ export function Column(name){
     this.id = columnContainer.id
     this.columnName = columnName
     this.deleteAllButton = deleteAllButton
-
     this.columnContainer = columnContainer
+    this.countOfTask = countOfTask
 }
 
 

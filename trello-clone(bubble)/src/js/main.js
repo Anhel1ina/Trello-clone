@@ -1,9 +1,11 @@
 import { createDivPargFormElement, createInputElement, createModal } from "./add-elem-func";
 import { updateDate, updateTime, editColumnName} from "./functions";
 import { Column } from "./column-create";
-import { arrayOfColumns, columnStorageKey } from "./variables";
+import { arrayOfCards, arrayOfColumns, cardStorageKey, columnStorageKey } from "./variables";
+import { Card } from "./card-create";
 
 export const modalWarning = createModal()
+let testArray = []
 
 root.className = 'wrapper'
 const headerBlock = createDivPargFormElement('div', 'wrapper__header header-block', root)
@@ -17,7 +19,6 @@ updateDate(currentDate)
 const currentTime = createDivPargFormElement('div', 'datetime__time', dateTime)
 updateTime(currentTime)
 
-
 export const boardsBlock = createDivPargFormElement('div', 'wrapper__board board-block', root)
 export const innerBoardBlock = createDivPargFormElement('div', 'board-block__columns columns', boardsBlock)
 
@@ -25,6 +26,7 @@ export const addColumnButton = createDivPargFormElement('button', 'columns__add-
 addColumnButton.addEventListener('click', () => {
     const column = new Column()
     arrayOfColumns.push(column)
+    testArray.push(column)
     document.body.querySelector('.columns').append(column.columnContainer)
 })
 
@@ -33,39 +35,52 @@ plusButton.innerText = '+'
 const innerTextAddButton = createDivPargFormElement('p', 'add-column-button__text', addColumnButton)
 innerTextAddButton.innerText = 'add new column'
 
-document.addEventListener('DOMContentLoaded', () => {
-    setInterval(() => {
-        let columns = document.querySelectorAll('.col-header__name')
-        columns.forEach((column) => {
-            if(!column.innerHTML){
-                column.readonly
-            }
-        })
-    }, 100)
-})
-
 
 //saving and uploading 
 
-const URL1 = 'https://652a6bdc4791d884f1fce7bd.mockapi.io/columns'
-
-
 window.addEventListener('load', () => {
-    const savedData = JSON.parse(localStorage.getItem(columnStorageKey)) ?? []
-    for(let i = 0; i < savedData.length; i++){
-        const column = new Column(savedData[i].nameOfColumn)
+    const savedColumnData = JSON.parse(localStorage.getItem(columnStorageKey)) ?? []
+    const savedCardsData = JSON.parse(localStorage.getItem(cardStorageKey)) ?? []
+    for(let i = 0; i < savedColumnData.length; i++){
+        const column = new Column(savedColumnData[i].nameOfColumn, savedColumnData[i].countOfTask)
         arrayOfColumns.push(column)
         document.body.querySelector('.columns').append(column.columnContainer)
     }
+
+    for(let j = 0; j < savedCardsData.length; j++){
+        const card = new Card(savedCardsData[j].taskCardTitle, savedCardsData[j].idOfColumnForCard)
+        arrayOfCards.push(card)
+
+        const columns = document.body.querySelectorAll('.col-wrapper')
+        columns.forEach(column => {
+            if(column.id === savedCardsData[j].idOfColumnForCard){
+                column.querySelector('.column-card').append(card.taskCard)
+            }
+        })
+    }
 })
 
+window.addEventListener('DOMContentLoaded', () => {
+    
+})
 
 window.addEventListener('beforeunload', () => {
     const storageColumnsData = arrayOfColumns.map(column => {
         return{
             idOfColumn: column.id,
-            nameOfColumn: column.columnName.value
+            nameOfColumn: column.columnName.value,
+            countOfTask: column.countOfTask.innerText
         }
     })
     localStorage.setItem(columnStorageKey, JSON.stringify(storageColumnsData))
+
+    const storageCardData = arrayOfCards.map(card => {
+        return{
+            idOfCard: card.id,
+            idOfColumnForCard: card.idForColumn,
+            taskCardTitle: card.taskCardTitle.value
+        }
+    })
+    localStorage.setItem(cardStorageKey, JSON.stringify(storageCardData))
 })
+

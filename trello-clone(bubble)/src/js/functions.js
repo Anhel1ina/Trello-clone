@@ -1,3 +1,15 @@
+export const getCurrentTime = () => {
+        let currentDate = new Date()
+        let currentHours = currentDate.getHours()
+        let currentMinutes = currentDate.getMinutes()
+
+        let formattedHours = currentHours < 10 ? '0' + currentHours : currentHours
+        let formattedMinutes = currentMinutes < 10 ? '0' + currentMinutes : currentMinutes
+
+        let formattedTime = `${formattedHours}:${formattedMinutes}`
+
+        return formattedTime
+}
 
 export const updateDate = (dateBlock) => {
     setInterval(() => {
@@ -9,9 +21,7 @@ export const updateDate = (dateBlock) => {
 
 export const updateTime = (timeBlock) => {
     setInterval(() => {
-        let currentDate = new Date()
-        let time = currentDate.toLocaleTimeString()
-        timeBlock.innerText = time
+        timeBlock.innerText = getCurrentTime()
     }, 1000)
 }
 
