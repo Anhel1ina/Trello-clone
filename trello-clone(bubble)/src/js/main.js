@@ -1,11 +1,10 @@
-import { createDivPargFormElement, createInputElement, createModal } from "./add-elem-func";
+import { createDivPargFormElement, createInputElement, deleteModal } from "./add-elem-func";
 import { updateDate, updateTime, editColumnName} from "./functions";
 import { Column } from "./column-create";
 import { arrayOfCards, arrayOfColumns, cardStorageKey, columnStorageKey } from "./variables";
 import { Card } from "./card-create";
 
-export const modalWarning = createModal()
-let testArray = []
+// export const modalWarning = new deleteModal()
 
 root.className = 'wrapper'
 const headerBlock = createDivPargFormElement('div', 'wrapper__header header-block', root)
@@ -26,7 +25,6 @@ export const addColumnButton = createDivPargFormElement('button', 'columns__add-
 addColumnButton.addEventListener('click', () => {
     const column = new Column()
     arrayOfColumns.push(column)
-    testArray.push(column)
     document.body.querySelector('.columns').append(column.columnContainer)
 })
 
@@ -61,8 +59,14 @@ window.addEventListener('load', () => {
 })
 
 window.addEventListener('DOMContentLoaded', () => {
-    
+    setInterval(function(){
+        arrayOfColumns.forEach((column) => {
+            let countOfCardsForColumn = +(column.cardContainer.children.length)
+            column.countOfTask.innerText = countOfCardsForColumn
+        })
+    }, 100)
 })
+
 
 window.addEventListener('beforeunload', () => {
     const storageColumnsData = arrayOfColumns.map(column => {

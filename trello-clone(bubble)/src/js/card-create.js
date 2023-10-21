@@ -1,5 +1,6 @@
 import { createDivPargFormElement, createInputElement } from "./add-elem-func"
 import { getCurrentTime } from "./functions"
+import { arrayOfCards } from "./variables"
 
 let cardId = 1100
 export function Card(task, columnId){
@@ -16,15 +17,28 @@ export function Card(task, columnId){
 
     const taskCardEdit = createDivPargFormElement('button', 'card-buttons__edit', taskCardButtons)
     taskCardEdit.innerText = 'Edit'
+
     const taskCardDelete = createDivPargFormElement('button', 'card-buttons__delete', taskCardButtons)
     taskCardDelete.innerText = 'Delete'
+    taskCardDelete.addEventListener('click', () => {
+        const cardToDelete = this.taskCard
+        cardToDelete.remove()
+        arrayOfCards.forEach((card, index) => {
+            if(cardToDelete === card.taskCard){
+                arrayOfCards.splice(index, 1)
+            }
+        })
+    })
 
     // const taskCardDescription = createDivPargFormElement('textarea','task-card__description', taskCard)
     const taskCardTitle = createInputElement('task-card__title', 'text', '', taskCard)
     taskCardTitle.placeholder = 'Enter task'
-
+    taskCardTitle.disabled = false
     if(!(task === undefined)){
         taskCardTitle.value = task
+    }
+    if(taskCardTitle.value){
+        taskCardTitle.disabled = true
     }
 
     taskCardTitle.addEventListener('change', () => {
@@ -32,6 +46,7 @@ export function Card(task, columnId){
             taskCardTitle.disabled = true
         }
     })
+
 
     const taskCardFooter = createDivPargFormElement('div', 'task-card__footer', taskCard)
     const taskCardUsers = createDivPargFormElement('div', 'task-card__footer_users', taskCardFooter)

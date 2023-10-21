@@ -1,4 +1,4 @@
-import { createDivPargFormElement, createInputElement, createModal} from "./add-elem-func";
+import { createDivPargFormElement, createInputElement, DeleteModal} from "./add-elem-func";
 import { editColumnName } from "./functions";
 import {innerBoardBlock, boardsBlock} from "./main";
 import { arrayOfCards, arrayOfColumns } from "./variables";
@@ -13,6 +13,7 @@ export function Column(name, countTask){
     const columnHeader = createDivPargFormElement('div', 'col-wrapper__header col-header', columnContainer)
     const columnName = createInputElement('col-header__name', 'input', '', columnHeader)
     columnName.placeholder = 'Enter Column Name'
+    columnName.autocomplete = 'off'
 
     columnName.id = 'column-name' + columnContainer.id
 
@@ -56,7 +57,6 @@ export function Column(name, countTask){
         cardContainer.append(card.taskCard)
         arrayOfCards.push(card)
 
-        console.log(arrayOfCards)
         countOfTask.innerText++
     })
 
@@ -73,11 +73,13 @@ export function Column(name, countTask){
     textDeleteAllBUtton.innerText = 'delete all'
 
     deleteAllButton.addEventListener('click', () => {
-        document.querySelector('.modalDeleteAll').classList.add('modal-show')
+        const delWindow = new DeleteModal(deleteAllButton.parentElement)
+        delWindow.modal.classList.add('modal-show')
 
         document.querySelector('.modalDeleteAll').addEventListener('click', (event) => {
             if(event.target === document.querySelector('.modalDeleteAll__holder_cancel')){
                 document.querySelector('.modalDeleteAll').classList.remove('modal-show')
+                delWindow.modal.remove()
             }
             else if(event.target === document.querySelector('.modalDeleteAll__holder_confirm')){
                 const columnToDelete = deleteAllButton.parentElement
@@ -85,10 +87,17 @@ export function Column(name, countTask){
 
                 arrayOfColumns.forEach((column, index) => {
                     if(columnToDelete === column.columnContainer){
+                        const cardsToDelete = arrayOfCards.filter((card) => card.idForColumn === column.id)
+                        for(let i = 0; i < arrayOfCards.length; i++){
+                            for(let j = 0; j < cardsToDelete.length; j++){
+                                if(arrayOfCards[i] === cardsToDelete[j]){
+                                    arrayOfCards.splice(i, 1)
+                                }
+                            }
+                        }
                         arrayOfColumns.splice(index, 1)
                     }
                 })
-                document.querySelector('.modalDeleteAll').classList.remove('modal-show')
             }
         })
     })
@@ -98,6 +107,7 @@ export function Column(name, countTask){
     this.deleteAllButton = deleteAllButton
     this.columnContainer = columnContainer
     this.countOfTask = countOfTask
+    this.cardContainer = cardContainer
 }
 
 

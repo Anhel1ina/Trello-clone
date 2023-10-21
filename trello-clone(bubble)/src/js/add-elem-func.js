@@ -14,16 +14,22 @@ export const createInputElement = (classname, typeName, valueName, appendEl) =>{
     return buttonEl
 }
 
-export const createModal = () => {
-    const modal = createDivPargFormElement('div', 'modal modalDeleteAll', root)
-        const modalDeleteAll = createDivPargFormElement('div', 'modalDeleteAll__holder', modal)
+export function DeleteModal(blockToAdd){
+    const modal = createDivPargFormElement('div', 'modal modalDeleteAll', blockToAdd)
 
-        const modalMessage = createDivPargFormElement('p', 'modalDeleteAll__holder_message', modalDeleteAll)
-        modalMessage.innerText = 'Confirm deleting: '
+    const modalDeleteAll = createDivPargFormElement('div', 'modalDeleteAll__holder', modal)
+
+    const delWarnSign = createDivPargFormElement('div', 'modalDeleteAll__holder_img', modalDeleteAll)
+
+    const modalMessage = createDivPargFormElement('p', 'modalDeleteAll__holder_message', modalDeleteAll)
+    modalMessage.innerHTML = 'Confirm deleting EVERYTHING in the column'
         
-        const modalCancelButton = createDivPargFormElement('button', 'modalDeleteAll__holder_cancel', modalDeleteAll)
-        modalCancelButton.innerText = 'cancel'
+    const modalCancelButton = createDivPargFormElement('button', 'modalDeleteAll__holder_cancel', modalDeleteAll)
+    modalCancelButton.innerText = 'cancel'
 
-        const modalConfirmButton = createDivPargFormElement('button', 'modalDeleteAll__holder_confirm', modalDeleteAll)
-        modalConfirmButton.innerText = 'confirm'
+    const modalConfirmButton = createDivPargFormElement('button', 'modalDeleteAll__holder_confirm', modalDeleteAll)
+    modalConfirmButton.innerText = 'confirm'
+
+    this.modal = modal
+    this.modalMessage = modalMessage
 }

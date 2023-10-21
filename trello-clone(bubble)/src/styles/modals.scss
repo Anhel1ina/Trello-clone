@@ -7,14 +7,11 @@
     height: 100vh;
     background-color: rgba(44, 20, 66, 0.468);
 
-    display: none;
-}
-
-.modal-show{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 
 @keyframes modal-create{
     0%{
@@ -47,7 +44,7 @@
 
 @keyframes text-appear{
     0%{
-        
+        color: transparent;
     }
     100%{
         color: #000000;
@@ -64,11 +61,22 @@
         border-radius: 50px;
 
         display: grid;
-        grid-template-rows: 80% 20%;
+        grid-template-rows: 20% 60% 20%;
         grid-template-columns: repeat(2, 1fr);
         font-family: 'Raleway', sans-serif;
 
         animation: modal-create .8s ease-in-out;
+
+        &_img{
+            grid-column: 1/3;
+            &::after{
+                content: url('../images/warn-sign.svg');
+                display: block;
+                margin: 50px auto;
+                height: 100%;
+                aspect-ratio: 1/1;
+            }
+        }
 
         &_message{
             grid-column: 1/3;
@@ -77,6 +85,10 @@
             font-size: 24px;
             cursor: default;
             color: transparent;
+
+            text-align: center;
+            margin: 0 30px;
+            width: 80%;
 
             animation: text-appear .3s ease-in-out 1s forwards;
         }
