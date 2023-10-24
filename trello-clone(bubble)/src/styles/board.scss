@@ -95,4 +95,14 @@ input::-webkit-input-placeholder {
     animation: shake .4s ease-in-out;
 }
 
+
+@media(max-width: 1540px) {
+    .col-wrapper{
+        min-width: 30vw;
+    }
+}
+
+
+
+
 @import url(../styles/column-inner-content.scss);

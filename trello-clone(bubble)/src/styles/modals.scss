@@ -91,6 +91,14 @@
             width: 80%;
 
             animation: text-appear .3s ease-in-out 1s forwards;
+
+            & p{
+                margin: 0;
+            }
+
+            & p:first-child{
+                margin-top: 10px;
+            }
         }
 
         & button{

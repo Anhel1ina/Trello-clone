@@ -33,6 +33,8 @@ plusButton.innerText = '+'
 const innerTextAddButton = createDivPargFormElement('p', 'add-column-button__text', addColumnButton)
 innerTextAddButton.innerText = 'add new column'
 
+///////////////////////
+
 
 //saving and uploading 
 
@@ -46,7 +48,7 @@ window.addEventListener('load', () => {
     }
 
     for(let j = 0; j < savedCardsData.length; j++){
-        const card = new Card(savedCardsData[j].taskCardTitle, savedCardsData[j].idOfColumnForCard)
+        const card = new Card(savedCardsData[j].taskCardTitle, savedCardsData[j].idOfColumnForCard, savedCardsData[j].taskTime, savedCardsData[j].taskDate, savedCardsData[j].taskCardDescription, savedCardsData[j].cardColorTheme)
         arrayOfCards.push(card)
 
         const columns = document.body.querySelectorAll('.col-wrapper')
@@ -82,7 +84,10 @@ window.addEventListener('beforeunload', () => {
         return{
             idOfCard: card.id,
             idOfColumnForCard: card.idForColumn,
-            taskCardTitle: card.taskCardTitle.value
+            taskCardTitle: card.taskCardTitle.value,
+            taskTime: card.taskTime.innerText,
+            taskDate: card.taskDate.innerText,
+            taskCardDescription: card.cardDescription.value
         }
     })
     localStorage.setItem(cardStorageKey, JSON.stringify(storageCardData))

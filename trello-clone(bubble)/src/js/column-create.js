@@ -74,6 +74,8 @@ export function Column(name, countTask){
 
     deleteAllButton.addEventListener('click', () => {
         const delWindow = new DeleteModal(deleteAllButton.parentElement)
+        delWindow.modalMessage.innerHTML += `<p>column: "${this.columnName.value}"</p>`
+        delWindow.modalMessage.innerHTML += `<p>total amount of cards: ${this.countOfTask.innerText}</p>`
         delWindow.modal.classList.add('modal-show')
 
         document.querySelector('.modalDeleteAll').addEventListener('click', (event) => {

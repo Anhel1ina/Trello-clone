@@ -22,6 +22,7 @@
 
         &_time{
             grid-column: 2/3;
+            width: 44%;
             font-size: 18px;
             font-family: 'Raleway', sans-serif;
             font-weight: 500;
@@ -31,6 +32,9 @@
             justify-self: center;
 
             cursor: default;
+
+            display: flex;
+            justify-content: space-between;
         }
     }
 
@@ -132,3 +136,5 @@ input::-webkit-input-placeholder{
         }
     }
 }
+
+@import url(../styles/main-form-card.scss);

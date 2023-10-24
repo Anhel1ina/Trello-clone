@@ -11,7 +11,7 @@ body{
 
     &__header{
         display: grid;
-        grid-template-columns: 60% 40%;
+        grid-template-columns: 70% 30%;
 
         align-items: center;
 
@@ -31,3 +31,5 @@ body{
 @import url(../styles/add-column.scss);
 @import url(../styles/modals.scss);
 @import url(../styles/task-card.scss);
+
+@import url(../styles/color-change.scss);
