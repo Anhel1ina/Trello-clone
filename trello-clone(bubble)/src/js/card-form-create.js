@@ -1,15 +1,20 @@
 import { createDivPargFormElement, createInputElement } from "./add-elem-func"
 
-export function CardForm(blockToAdd, title, description){
+export function CardForm(blockToAdd, title, description, color){
     const mainCardForm = createDivPargFormElement('div', 'task-card__main-form', blockToAdd)
     const mainCardFormHolder = createDivPargFormElement('div', 'task-card__main-form_holder form-holder', mainCardForm)
+    
+    mainCardFormHolder.style.backgroundColor = color
+    if(color === 'rgba(0, 0, 0, 0.27)'){
+        mainCardFormHolder.style.backgroundColor = 'rgba(255, 255, 255, 1)'
+    }
+    // mainCardFormHolder.style.backgroundColor = 'rgba(255, 255, 255, 1)'
 
     const mainFormTitle = createInputElement('form-holder__title', 'text', '', mainCardFormHolder)
     mainFormTitle.placeholder = 'Enter task...'
     mainFormTitle.value = title
 
     const colorPalette = createDivPargFormElement('div', 'form-holder__palette', mainCardFormHolder)
-    
 
     let colorsArray = []
     for(let i = 1; i <= 6; i++){
@@ -25,9 +30,12 @@ export function CardForm(blockToAdd, title, description){
                 blockToAdd.classList.remove(`task-card-back-color${i}`)
             }
             if(color.classList.contains(`task-card-back-color${index + 1}`)){
+                mainCardFormHolder.style.backgroundColor = ''
                 mainCardFormHolder.classList.add(`task-card-back-color${index + 1}`)
-                blockToAdd.classList.add(`task-card-back-color${index + 1}`)
-                colorTheme = `task-card-back-color${index + 1}`
+                blockToAdd.style.backgroundColor = ''
+                if(!(index + 1 === 6)){
+                    blockToAdd.classList.add(`task-card-back-color${index + 1}`)
+                }
             }
         })
     })
@@ -79,4 +87,6 @@ export function CardForm(blockToAdd, title, description){
 
     this.mainFormConfirm = mainFormConfirm
     this.mainFormCancel = mainFormCancel
+
+    this.colorTheme = window.getComputedStyle(mainCardFormHolder).getPropertyValue('background-color')
 }

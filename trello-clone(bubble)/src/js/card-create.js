@@ -5,10 +5,15 @@ import { arrayOfCards } from "./variables"
 
 
 let cardId = 1100
-export function Card(task, columnId, time, date, description){
+export function Card(task, columnId, time, date, description, color){
     const taskCard = document.createElement('div')
     taskCard.className = 'column-card__task-card task-card'
     taskCard.id = cardId++
+
+    if(!(color === 'rgba(255, 255, 255, 1)')){
+        taskCard.style.backgroundColor = color
+    }
+
     this.idForColumn = columnId
 
     const taskCardHeader = createDivPargFormElement('div', 'task-card__header', taskCard)
@@ -63,14 +68,8 @@ export function Card(task, columnId, time, date, description){
     const taskCardFooter = createDivPargFormElement('div', 'task-card__footer', taskCard)
     const taskCardUsers = createDivPargFormElement('div', 'task-card__footer_users', taskCardFooter)
     
-    // const colorChange = createDivPargFormElement('button', 'task-card__footer_colors', taskCardFooter)
-    // colorChange.innerText = '...'
     
-    // colorChange.addEventListener('click', () => {
-    //     console.log(colorTheme)
-    // })
-    
-    const cardForm = new CardForm(taskCard, taskCardTitle.value, description)
+    const cardForm = new CardForm(taskCard, taskCardTitle.value, description, color)
     
     taskCardEdit.addEventListener('click', () => {
         cardForm.mainCardForm.classList.add('show-form')
@@ -91,4 +90,5 @@ export function Card(task, columnId, time, date, description){
     this.taskDate = taskDate
 
     this.cardDescription = cardForm.mainFormDespription
+    this.cardColorTheme = window.getComputedStyle(taskCard)
 }

@@ -58,7 +58,7 @@
         grid-column: 1/3;
         border-radius: 10px;
         font-size: 24px;
-        color: #fffc;
+        color: #440f48;
 
         border: none;
         background-color: transparent;
@@ -76,7 +76,7 @@
 }
 
 input::-webkit-input-placeholder{ 
-    color: #fffc;
+    color: #440f48;
 }
 
 .task-card__header{
@@ -137,4 +137,28 @@ input::-webkit-input-placeholder{
     }
 }
 
+
+.task-card-back-color1{
+    background-color: #d3c1e0;
+}
+
+.task-card-back-color2{
+    background-color: #c4c2e3;
+}
+
+.task-card-back-color3{
+    background-color: #dfcfc9;
+}
+
+.task-card-back-color4{
+    background-color: #bfd5c9;
+}
+
+.task-card-back-color5{
+    background-color: #f4f4d9;
+}
+
+.task-card-back-color6{
+    background-color: #ffffff;
+}
 @import url(../styles/main-form-card.scss);

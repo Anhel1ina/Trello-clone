@@ -48,7 +48,10 @@ window.addEventListener('load', () => {
     }
 
     for(let j = 0; j < savedCardsData.length; j++){
-        const card = new Card(savedCardsData[j].taskCardTitle, savedCardsData[j].idOfColumnForCard, savedCardsData[j].taskTime, savedCardsData[j].taskDate, savedCardsData[j].taskCardDescription, savedCardsData[j].cardColorTheme)
+        const card = new Card(savedCardsData[j].taskCardTitle, savedCardsData[j].idOfColumnForCard, 
+        savedCardsData[j].taskTime, savedCardsData[j].taskDate, savedCardsData[j].taskCardDescription, 
+        savedCardsData[j].taskCardColor)
+
         arrayOfCards.push(card)
 
         const columns = document.body.querySelectorAll('.col-wrapper')
@@ -87,7 +90,8 @@ window.addEventListener('beforeunload', () => {
             taskCardTitle: card.taskCardTitle.value,
             taskTime: card.taskTime.innerText,
             taskDate: card.taskDate.innerText,
-            taskCardDescription: card.cardDescription.value
+            taskCardDescription: card.cardDescription.value,
+            taskCardColor: card.cardColorTheme.getPropertyValue('background-color')
         }
     })
     localStorage.setItem(cardStorageKey, JSON.stringify(storageCardData))
