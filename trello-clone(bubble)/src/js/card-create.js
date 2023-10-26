@@ -8,13 +8,15 @@ let cardId = 1100
 export function Card(task, columnId, time, date, description, color){
     const taskCard = document.createElement('div')
     taskCard.className = 'column-card__task-card task-card'
-    taskCard.id = cardId++
+    
+    taskCard.addEventListener('dblclick', () => {
+        cardForm.mainCardForm.classList.add('show-form')
+    })
+    
 
     if(!(color === 'rgba(255, 255, 255, 1)')){
         taskCard.style.backgroundColor = color
     }
-
-    this.idForColumn = columnId
 
     const taskCardHeader = createDivPargFormElement('div', 'task-card__header', taskCard)
     const taskCardTime = createDivPargFormElement('div', 'task-card__header_time task-card-full-time', taskCardHeader)
@@ -81,6 +83,9 @@ export function Card(task, columnId, time, date, description, color){
         taskCardTitle.value = cardForm.mainFormTitle.value
         this.cardDescription = cardForm.mainFormDespription
     })
+
+    taskCard.id = cardId++
+    this.idForColumn = columnId
 
     this.taskCard = taskCard
     this.taskCardTitle = taskCardTitle

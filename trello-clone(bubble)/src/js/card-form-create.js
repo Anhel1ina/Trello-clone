@@ -1,4 +1,5 @@
 import { createDivPargFormElement, createInputElement } from "./add-elem-func"
+import { displayUsers } from "./user"
 
 export function CardForm(blockToAdd, title, description, color){
     const mainCardForm = createDivPargFormElement('div', 'task-card__main-form', blockToAdd)
@@ -8,7 +9,7 @@ export function CardForm(blockToAdd, title, description, color){
     if(color === 'rgba(0, 0, 0, 0.27)'){
         mainCardFormHolder.style.backgroundColor = 'rgba(255, 255, 255, 1)'
     }
-    // mainCardFormHolder.style.backgroundColor = 'rgba(255, 255, 255, 1)'
+    
 
     const mainFormTitle = createInputElement('form-holder__title', 'text', '', mainCardFormHolder)
     mainFormTitle.placeholder = 'Enter task...'
@@ -48,11 +49,19 @@ export function CardForm(blockToAdd, title, description, color){
 
     const dropDownUsers = createDivPargFormElement('div', '.form-holder__dropdown dropdown', mainCardFormHolder)
     const dropDownButton = createDivPargFormElement('button', 'dropdown__button', dropDownUsers)
+    
     dropDownButton.innerText = 'Select Users...'
+    dropDownButton.addEventListener('click', () => {
+        dropDownContent.classList.toggle('show-search-user')
+    })
+
     const dropDownContent = createDivPargFormElement('div', 'dropdown__inner-content dropdown-content', dropDownUsers)
+    dropDownContent.style.backgroundColor =  window.getComputedStyle(mainCardFormHolder).getPropertyValue('background-color')
 
     const dropDownSearch = createInputElement('dropdown-content__search', 'text', '', dropDownContent)
+    dropDownSearch.placeholder = 'Search...'
     const dropDownHolder = createDivPargFormElement('div', 'dropdown-content__holder dropdown-users-holder', dropDownContent)
+    displayUsers(dropDownHolder)
     // create cards with users
 
     // const dropDownText = createDivPargFormElement('p', 'dropdown-text', dropDownUsers)

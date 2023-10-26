@@ -3,8 +3,7 @@ import { updateDate, updateTime, editColumnName} from "./functions";
 import { Column } from "./column-create";
 import { arrayOfCards, arrayOfColumns, cardStorageKey, columnStorageKey } from "./variables";
 import { Card } from "./card-create";
-
-// export const modalWarning = new deleteModal()
+import { getUsers } from "./user";
 
 root.className = 'wrapper'
 const headerBlock = createDivPargFormElement('div', 'wrapper__header header-block', root)
@@ -96,4 +95,5 @@ window.addEventListener('beforeunload', () => {
     })
     localStorage.setItem(cardStorageKey, JSON.stringify(storageCardData))
 })
+
 
