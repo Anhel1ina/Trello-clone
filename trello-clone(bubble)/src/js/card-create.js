@@ -1,7 +1,7 @@
 import { createDivPargFormElement, createInputElement, ColorChangePalette } from "./add-elem-func"
 import { getCurrentTime, getCurrentDate } from "./functions"
 import { CardForm } from "./card-form-create"
-import { arrayOfCards } from "./variables"
+import { arrayOfCards, arrayOfColumns } from "./variables"
 
 
 let cardId = 1100
@@ -10,7 +10,7 @@ export function Card(task, columnId, time, date, description, color){
     taskCard.className = 'column-card__task-card task-card'
     
     taskCard.addEventListener('dblclick', () => {
-        cardForm.mainCardForm.classList.add('show-form')
+        // cardForm.mainCardForm.classList.add('show-form')
     })
     
 
@@ -34,7 +34,6 @@ export function Card(task, columnId, time, date, description, color){
     }
 
     const taskCardButtons = createDivPargFormElement('div', 'task-card__header_buttons card-buttons', taskCardHeader)
-
     const taskCardEdit = createDivPargFormElement('button', 'card-buttons__edit', taskCardButtons)
     taskCardEdit.innerText = 'Edit'
 
@@ -52,7 +51,6 @@ export function Card(task, columnId, time, date, description, color){
 
     const taskCardTitle = createInputElement('task-card__title', 'text', '', taskCard)
     taskCardTitle.placeholder = 'Enter task'
-    taskCardTitle.disabled = false
     if(!(task === undefined)){
         taskCardTitle.value = task
     }
@@ -66,10 +64,9 @@ export function Card(task, columnId, time, date, description, color){
         }
     })
 
-
     const taskCardFooter = createDivPargFormElement('div', 'task-card__footer', taskCard)
-    const taskCardUsers = createDivPargFormElement('div', 'task-card__footer_users', taskCardFooter)
-    
+    const taskCardUsers = createDivPargFormElement('div', 'task-card__footer_users card-footer-users', taskCardFooter)
+
     
     const cardForm = new CardForm(taskCard, taskCardTitle.value, description, color)
     

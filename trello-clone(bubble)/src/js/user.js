@@ -12,13 +12,10 @@ export function User(blockToAdd){
     const nicknameHolder = createDivPargFormElement('p', 'user-holder__nickname', userHolder)
     const addUserHolder = createDivPargFormElement('div', 'user-holder__added', userHolder)
 
-    userHolder.addEventListener('click', () => {
-        userHolder.classList.toggle('clicked-user')
-    })
-
     this.userHolder = userHolder
     this.avatarHolder = avatarHolder
     this.nicknameHolder = nicknameHolder
+    this.addUserHolder = addUserHolder
 }
 
 export const displayUsers = async (blockToAdd) => {
@@ -27,5 +24,20 @@ export const displayUsers = async (blockToAdd) => {
         const user = new User(blockToAdd)
         user.nicknameHolder.innerText = dataItem.name
         user.avatarHolder.style.backgroundImage = `url(${dataItem.avatar})`
+
+        user.userHolder.addEventListener('click', () => {
+            user.userHolder.classList.toggle('clicked-user')
+            user.addUserHolder.classList.toggle('show-form')
+
+            if(user.userHolder.classList.contains('clicked-user')){
+                const usersAvasHolder = user.userHolder.closest('.task-card__main-form').closest('.task-card').querySelector('.card-footer-users')
+                const userAvatar = createDivPargFormElement('div', 'card-footer-users__elem', usersAvasHolder)
+                userAvatar.style.backgroundImage = user.avatarHolder.style.backgroundImage
+            }
+            else{
+                const usersAvasHolder = user.userHolder.closest('.task-card__main-form').closest('.task-card').querySelector('.card-footer-users')
+                usersAvasHolder.querySelector('.card-footer-users__elem').remove()
+            }
+        })
     });
 };

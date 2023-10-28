@@ -10,7 +10,6 @@ export function CardForm(blockToAdd, title, description, color){
         mainCardFormHolder.style.backgroundColor = 'rgba(255, 255, 255, 1)'
     }
     
-
     const mainFormTitle = createInputElement('form-holder__title', 'text', '', mainCardFormHolder)
     mainFormTitle.placeholder = 'Enter task...'
     mainFormTitle.value = title
@@ -60,12 +59,26 @@ export function CardForm(blockToAdd, title, description, color){
 
     const dropDownSearch = createInputElement('dropdown-content__search', 'text', '', dropDownContent)
     dropDownSearch.placeholder = 'Search...'
+
+
+    dropDownSearch.addEventListener('input', () => {
+        let users = dropDownContent.querySelectorAll('.user-holder');
+        let searchUserNick = dropDownSearch.value.toUpperCase();
+    
+        users.forEach(user => {
+            let userNick = user.innerText.toUpperCase();
+            if(userNick.includes(searchUserNick)) {
+                user.classList.remove('search-users');
+            } else {
+                user.classList.add('search-users');
+            }
+        });
+    })
+
     const dropDownHolder = createDivPargFormElement('div', 'dropdown-content__holder dropdown-users-holder', dropDownContent)
     displayUsers(dropDownHolder)
     // create cards with users
 
-    // const dropDownText = createDivPargFormElement('p', 'dropdown-text', dropDownUsers)
-    // const dropDownIcon = createDivPargFormElement('div', 'dropdown-icon', dropDownUsers)
 
     const mainFormButtons = createDivPargFormElement('div', 'form-holder__buttons', mainCardFormHolder)
     const mainFormCancel = createDivPargFormElement('button', 'form-holder__cancel', mainFormButtons)

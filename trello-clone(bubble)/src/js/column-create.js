@@ -60,8 +60,6 @@ export function Column(name, countTask){
         countOfTask.innerText++
 
         let propertyValue = card.cardColorTheme.getPropertyValue('background-color')
-
-        console.log(propertyValue)
     })
 
     const iconAddCardButton = createDivPargFormElement('p', 'card-add-button__icon', addCardButton)
