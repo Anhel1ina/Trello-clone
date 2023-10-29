@@ -41,7 +41,7 @@ export function CardForm(blockToAdd, title, description, color, usersLoaded){
     })
 
     const mainFormDespription = createDivPargFormElement('textarea', 'form-holder__description', mainCardFormHolder)
-    mainFormDespription.placeholder = 'Enter task description...'
+    mainFormDespription.placeholder = 'Enter description...'
     if(description){
         mainFormDespription.value = description
     }

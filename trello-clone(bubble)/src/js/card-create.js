@@ -10,7 +10,9 @@ export function Card(task, columnId, time, date, description, color, users){
     taskCard.className = 'column-card__task-card task-card'
     
     taskCard.addEventListener('dblclick', () => {
-        //add element relocation
+        // if(arrayOfColumns.length > 1){
+
+        // }
     })
     
 
