@@ -1,25 +1,22 @@
 export const getCurrentTime = () => {
-    let currentDate = new Date()
-    let currentHours = currentDate.getHours()
-    let currentMinutes = currentDate.getMinutes()
-
-    let formattedHours = currentHours < 10 ? '0' + currentHours : currentHours
-    let formattedMinutes = currentMinutes < 10 ? '0' + currentMinutes : currentMinutes
-
-    let formattedTime = `${formattedHours}:${formattedMinutes}`
-
-    return formattedTime
+    const currentDate = new Date();
+    const currentHours = String(currentDate.getHours()).padStart(2, '0');
+    const currentMinutes = String(currentDate.getMinutes()).padStart(2, '0');
+    
+    const formattedTime = `${currentHours}:${currentMinutes}`;
+    return formattedTime;
 }
 
 export const getCurrentDate = () => {
-    let currentDate = new Date()
+    const currentDate = new Date();
+    const { month, day, year } = {
+        month: (currentDate.getMonth() + 1).toString().padStart(2, '0'),
+        day: currentDate.getDate().toString().padStart(2, '0'),
+        year: currentDate.getFullYear().toString().slice(-2)
+    };
 
-    let month = (currentDate.getMonth() + 1).toString().padStart(2, '0')
-    let day = currentDate.getDate().toString().padStart(2, '0')
-    let year = currentDate.getFullYear().toString().slice(-2)
-
-    let formattedDate = `${month}/${day}/${year}`
-    return formattedDate
+    const formattedDate = `${month}/${day}/${year}`;
+    return formattedDate;
 }
 
 export const updateDate = (dateBlock) => {

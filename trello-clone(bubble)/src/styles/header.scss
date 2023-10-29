@@ -7,22 +7,24 @@
 }
 
 .datetime{
-    text-align: center;
+    width: 80%;
+    text-align: right;
     font-size: 23px;
     display: flex;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
     font-family: 'Raleway', sans-serif;
     color: #440f48;
 
-    background: linear-gradient(to right, rgba(209, 135, 255, 0), rgba(209, 135, 255, 1));
-    border-radius: 0 30px 30px 0;
+    // background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.271));
+    background-color: rgba(0, 0, 0, 0.271);
+    border-radius: 30px;
     box-sizing: border-box;
     padding-top: 5px;
 
     &__time{
         width: 40%;
-        justify-self: center;
+        text-align: right;
 
         box-sizing: border-box;
         padding: 15px;

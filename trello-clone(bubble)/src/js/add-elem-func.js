@@ -16,9 +16,7 @@ export const createInputElement = (classname, typeName, valueName, appendEl) =>{
 
 export function DeleteModal(blockToAdd){
     const modal = createDivPargFormElement('div', 'modal modalDeleteAll', blockToAdd)
-
     const modalDeleteAll = createDivPargFormElement('div', 'modalDeleteAll__holder', modal)
-
     const delWarnSign = createDivPargFormElement('div', 'modalDeleteAll__holder_img', modalDeleteAll)
 
     const modalMessage = createDivPargFormElement('p', 'modalDeleteAll__holder_message', modalDeleteAll)
@@ -34,4 +32,3 @@ export function DeleteModal(blockToAdd){
     this.modalMessage = modalMessage
 }
 
-// export const addUserAvatar = 

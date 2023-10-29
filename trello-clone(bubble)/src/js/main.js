@@ -13,8 +13,9 @@ logo.innerText = 'bubble'
 
 export const dateTime = createDivPargFormElement('div', 'header-block__datetime datetime', headerBlock)
 const currentDate = createDivPargFormElement('div', 'datetime__date', dateTime)
-updateDate(currentDate)
 const currentTime = createDivPargFormElement('div', 'datetime__time', dateTime)
+
+updateDate(currentDate)
 updateTime(currentTime)
 
 export const boardsBlock = createDivPargFormElement('div', 'wrapper__board board-block', root)
@@ -49,8 +50,7 @@ window.addEventListener('load', () => {
     for(let j = 0; j < savedCardsData.length; j++){
         const card = new Card(savedCardsData[j].taskCardTitle, savedCardsData[j].idOfColumnForCard, 
         savedCardsData[j].taskTime, savedCardsData[j].taskDate, savedCardsData[j].taskCardDescription, 
-        savedCardsData[j].taskCardColor)
-
+        savedCardsData[j].taskCardColor, savedCardsData[j].taskCardUsers)
         arrayOfCards.push(card)
 
         const columns = document.body.querySelectorAll('.col-wrapper')
@@ -83,6 +83,11 @@ window.addEventListener('beforeunload', () => {
     localStorage.setItem(columnStorageKey, JSON.stringify(storageColumnsData))
 
     const storageCardData = arrayOfCards.map(card => {
+
+        let usersArray = []
+        for(let user of card.taskCardUsers){
+            usersArray.push(user.id)
+        }
         return{
             idOfCard: card.id,
             idOfColumnForCard: card.idForColumn,
@@ -90,7 +95,8 @@ window.addEventListener('beforeunload', () => {
             taskTime: card.taskTime.innerText,
             taskDate: card.taskDate.innerText,
             taskCardDescription: card.cardDescription.value,
-            taskCardColor: card.cardColorTheme.getPropertyValue('background-color')
+            taskCardColor: card.cardColorTheme.getPropertyValue('background-color'),
+            taskCardUsers: usersArray
         }
     })
     localStorage.setItem(cardStorageKey, JSON.stringify(storageCardData))

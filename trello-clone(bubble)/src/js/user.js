@@ -6,7 +6,7 @@ export const getUsers = async () => {
     return data
 }
 
-export function User(blockToAdd){
+export function User(blockToAdd, users){
     const userHolder = createDivPargFormElement('div', 'dropdown-users-holder__user user-holder', blockToAdd)
     const avatarHolder = createDivPargFormElement('div', 'user-holder__avatar', userHolder)
     const nicknameHolder = createDivPargFormElement('p', 'user-holder__nickname', userHolder)
@@ -18,25 +18,49 @@ export function User(blockToAdd){
     this.addUserHolder = addUserHolder
 }
 
-export const displayUsers = async (blockToAdd) => {
+export const displayUsers = async (blockToAdd, usersLoaded) => {
     const users = await getUsers();
     users.forEach((dataItem) => {
         const user = new User(blockToAdd)
         user.nicknameHolder.innerText = dataItem.name
         user.avatarHolder.style.backgroundImage = `url(${dataItem.avatar})`
+        user.userHolder.id = dataItem.id
 
+        const usersAvasHolder = user.userHolder.closest('.task-card__main-form').closest('.task-card').querySelector('.card-footer-users')
+
+        if(usersLoaded){
+            for(let userLoaded of usersLoaded){
+                if(userLoaded == 'user' + user.userHolder.id){
+                    user.userHolder.classList.add('clicked-user')
+                    user.addUserHolder.classList.toggle('show-form')
+    
+                    const userAvatar = createDivPargFormElement('div', 'card-footer-users__elem', usersAvasHolder)
+                    userAvatar.style.backgroundImage = user.avatarHolder.style.backgroundImage
+                    userAvatar.id = 'user' + user.userHolder.id
+                }
+            }
+        }
         user.userHolder.addEventListener('click', () => {
             user.userHolder.classList.toggle('clicked-user')
             user.addUserHolder.classList.toggle('show-form')
 
             if(user.userHolder.classList.contains('clicked-user')){
-                const usersAvasHolder = user.userHolder.closest('.task-card__main-form').closest('.task-card').querySelector('.card-footer-users')
                 const userAvatar = createDivPargFormElement('div', 'card-footer-users__elem', usersAvasHolder)
                 userAvatar.style.backgroundImage = user.avatarHolder.style.backgroundImage
+                userAvatar.id = 'user' + user.userHolder.id
+                
+
             }
             else{
-                const usersAvasHolder = user.userHolder.closest('.task-card__main-form').closest('.task-card').querySelector('.card-footer-users')
-                usersAvasHolder.querySelector('.card-footer-users__elem').remove()
+                let cardUsers = usersAvasHolder.children
+                for(let cardUser of cardUsers){
+                    if(cardUser.id === 'user' + user.userHolder.id){
+                        cardUser.remove()
+                    }
+                }
+                for(let user of usersAvasHolder.children){
+                    console.log(user.id)
+                }
             }
         })
     });

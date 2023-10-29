@@ -5,12 +5,12 @@ import { arrayOfCards, arrayOfColumns } from "./variables"
 
 
 let cardId = 1100
-export function Card(task, columnId, time, date, description, color){
+export function Card(task, columnId, time, date, description, color, users){
     const taskCard = document.createElement('div')
     taskCard.className = 'column-card__task-card task-card'
     
     taskCard.addEventListener('dblclick', () => {
-        // cardForm.mainCardForm.classList.add('show-form')
+        //add element relocation
     })
     
 
@@ -68,7 +68,7 @@ export function Card(task, columnId, time, date, description, color){
     const taskCardUsers = createDivPargFormElement('div', 'task-card__footer_users card-footer-users', taskCardFooter)
 
     
-    const cardForm = new CardForm(taskCard, taskCardTitle.value, description, color)
+    const cardForm = new CardForm(taskCard, taskCardTitle.value, description, color, users)
     
     taskCardEdit.addEventListener('click', () => {
         cardForm.mainCardForm.classList.add('show-form')
@@ -90,6 +90,8 @@ export function Card(task, columnId, time, date, description, color){
 
     this.taskTime = taskTime
     this.taskDate = taskDate
+
+    this.taskCardUsers = taskCardUsers.children
 
     this.cardDescription = cardForm.mainFormDespription
     this.cardColorTheme = window.getComputedStyle(taskCard)

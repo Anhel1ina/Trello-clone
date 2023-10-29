@@ -1,7 +1,7 @@
 import { createDivPargFormElement, createInputElement } from "./add-elem-func"
 import { displayUsers } from "./user"
 
-export function CardForm(blockToAdd, title, description, color){
+export function CardForm(blockToAdd, title, description, color, usersLoaded){
     const mainCardForm = createDivPargFormElement('div', 'task-card__main-form', blockToAdd)
     const mainCardFormHolder = createDivPargFormElement('div', 'task-card__main-form_holder form-holder', mainCardForm)
     
@@ -76,7 +76,7 @@ export function CardForm(blockToAdd, title, description, color){
     })
 
     const dropDownHolder = createDivPargFormElement('div', 'dropdown-content__holder dropdown-users-holder', dropDownContent)
-    displayUsers(dropDownHolder)
+    displayUsers(dropDownHolder, usersLoaded)
     // create cards with users
 
 
