@@ -2,17 +2,24 @@ import { createDivPargFormElement, createInputElement, ColorChangePalette } from
 import { getCurrentTime, getCurrentDate } from "./functions"
 import { CardForm } from "./card-form-create"
 import { arrayOfCards, arrayOfColumns } from "./variables"
-
+import { dragOver, dragEnter, dragStart, dragLeave, dragDrop} from "./dnd"
 
 let cardId = 1100
 export function Card(task, columnId, time, date, description, color, users){
     const taskCard = document.createElement('div')
     taskCard.className = 'column-card__task-card task-card'
+    taskCard.draggable = true
+
+    //DND tries
+
+    taskCard.addEventListener('dragstart', dragStart);
+    taskCard.addEventListener('dragover', dragOver);
+    taskCard.addEventListener('dragenter', dragEnter);
+    taskCard.addEventListener('dragleave', dragLeave);
+    taskCard.addEventListener('drop', dragDrop);
     
     taskCard.addEventListener('dblclick', () => {
-        // if(arrayOfColumns.length > 1){
-
-        // }
+        cardForm.mainCardForm.classList.add('show-form')
     })
     
 
@@ -41,6 +48,7 @@ export function Card(task, columnId, time, date, description, color, users){
 
     const taskCardDelete = createDivPargFormElement('button', 'card-buttons__delete', taskCardButtons)
     taskCardDelete.innerText = 'Delete'
+    
     taskCardDelete.addEventListener('click', () => {
         const cardToDelete = this.taskCard
         cardToDelete.remove()
@@ -72,6 +80,8 @@ export function Card(task, columnId, time, date, description, color, users){
     
     const cardForm = new CardForm(taskCard, taskCardTitle.value, description, color, users)
     
+
+    //editing card in card form
     taskCardEdit.addEventListener('click', () => {
         cardForm.mainCardForm.classList.add('show-form')
         cardForm.mainFormTitle.value = taskCardTitle.value

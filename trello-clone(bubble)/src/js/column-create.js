@@ -10,9 +10,10 @@ export function Column(name, countTask){
     const columnContainer = document.createElement('div')
     columnContainer.className = 'columns__col-wrapper col-wrapper'
     columnContainer.id = columnId++
+
     const columnHeader = createDivPargFormElement('div', 'col-wrapper__header col-header', columnContainer)
     const columnName = createInputElement('col-header__name', 'input', '', columnHeader)
-    columnName.placeholder = 'Enter Column Name'
+    columnName.placeholder = 'Enter Name'
     columnName.autocomplete = 'off'
 
     columnName.id = 'column-name' + columnContainer.id
@@ -48,7 +49,6 @@ export function Column(name, countTask){
 
     const cardContainer = createDivPargFormElement('div', 'card-holder__card column-card', cardHolder)
     
-    
     const addCardButton = createDivPargFormElement('button', 'inner-content-holder__add-button card-add-button', innerContentHolder)
     addCardButton.addEventListener('click', () => {
         const card = new Card()
@@ -58,8 +58,6 @@ export function Column(name, countTask){
         arrayOfCards.push(card)
 
         countOfTask.innerText++
-
-        let propertyValue = card.cardColorTheme.getPropertyValue('background-color')
     })
 
     const iconAddCardButton = createDivPargFormElement('p', 'card-add-button__icon', addCardButton)

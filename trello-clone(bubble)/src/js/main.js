@@ -33,8 +33,6 @@ plusButton.innerText = '+'
 const innerTextAddButton = createDivPargFormElement('p', 'add-column-button__text', addColumnButton)
 innerTextAddButton.innerText = 'add new column'
 
-///////////////////////
-
 
 //saving and uploading 
 
@@ -69,6 +67,28 @@ window.addEventListener('DOMContentLoaded', () => {
             column.countOfTask.innerText = countOfCardsForColumn
         })
     }, 100)
+
+    //change card-column id while dropping
+    setInterval(function(){
+        arrayOfColumns.forEach((column) => {
+            let columnCards = column.columnContainer.querySelectorAll('.task-card')
+            arrayOfCards.forEach((card) => {
+                columnCards.forEach((columnCard) => {
+                    if(columnCard.id === card.taskCard.id){
+                        card.idForColumn = column.columnContainer.id
+                    }
+                })
+            })
+        })
+    }, 100)
+
+    setInterval(function(){
+        arrayOfCards.forEach((card) => {
+            if(card.taskCard.style.display === 'none'){
+                card.taskCard.style.display = 'grid'
+            }
+        })
+    }, 100)
 })
 
 
@@ -82,8 +102,18 @@ window.addEventListener('beforeunload', () => {
     })
     localStorage.setItem(columnStorageKey, JSON.stringify(storageColumnsData))
 
-    const storageCardData = arrayOfCards.map(card => {
-
+    let newArrayOfCards = []
+    arrayOfColumns.forEach(column => {
+        let columnCards = column.columnContainer.querySelectorAll('.task-card')
+        columnCards.forEach(columnCard => {
+            arrayOfCards.forEach(card => {
+                if(columnCard.id === card.taskCard.id){
+                    newArrayOfCards.push(card)
+                }
+            })
+        })
+    })
+    const storageCardData = newArrayOfCards.map(card => {
         let usersArray = []
         for(let user of card.taskCardUsers){
             usersArray.push(user.id)

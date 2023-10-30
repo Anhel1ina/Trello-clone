@@ -7,7 +7,7 @@
 }
 
 .datetime{
-    width: 80%;
+    width: 24vw;
     text-align: right;
     font-size: 23px;
     display: flex;
@@ -15,6 +15,8 @@
     align-items: center;
     font-family: 'Raleway', sans-serif;
     color: #440f48;
+
+    padding: 15px;
 
     background-color: transparent;
     box-shadow: 0 0 15px #4e4e4e46;
@@ -27,6 +29,5 @@
         text-align: right;
 
         box-sizing: border-box;
-        padding: 15px;
     }
 }
