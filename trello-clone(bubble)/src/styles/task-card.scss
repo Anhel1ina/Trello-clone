@@ -8,7 +8,7 @@
     padding: 20px;
 
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 70% 30%;
     grid-template-rows: 30% 40% 30%;
 
     &__header{
@@ -21,7 +21,7 @@
 
         &_time{
             grid-column: 2/3;
-            width: 44%;
+            width: 55%;
             font-size: 18px;
             font-family: 'Raleway', sans-serif;
             font-weight: 500;
@@ -34,6 +34,10 @@
 
             display: flex;
             justify-content: space-between;
+        }
+
+        &_date{
+            margin-left: auto;
         }
     }
 
@@ -168,22 +172,23 @@ input::-webkit-input-placeholder{
     background-color: #ffffff;
 }
 
+@media(max-width: 550px){
+    .task-card__header{
+        &_time{
+            font-size: 14px;
+            width: 47%;
+        }
+    
+        &__title{
+            font-size: 18px;
+        }
+    }
 
-//dnd realization
-
-// .placeholder {
-//     background-color: white;
-//     margin-bottom: 0.5em;
-//     width: 100%;
-//     height: 180px;
-// }
-
-// .emptySectionHiddenLesson {
-//     background: none;
-//     border: none;
-//     width: 100%;
-//     height: 180px;
-// }
-
+    .task-card__header{
+        &_buttons button{
+            font-size: 16px;
+        }
+    }
+}
 
 @import url(../styles/main-form-card.scss);

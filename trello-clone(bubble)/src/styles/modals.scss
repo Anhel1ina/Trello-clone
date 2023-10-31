@@ -12,45 +12,17 @@
     align-items: center;
 }
 
-
 @keyframes modal-create{
     0%{
-        width: 0%;
-        height: 0%;
+        opacity: 0;
     }
     50%{
-        width: 35%;
-        height: 10%;
+        opacity: .5;
     }
     100%{
-        width: 35%;
-        height: 30%;
+        opacity: 1;
     }
 }
-
-@keyframes button-create{
-    0%{
-        color: transparent;
-        display: none;
-    }
-    50%{
-        color: transparent;
-        display: none;
-    }
-    100%{
-        color: #000000;
-    }
-}
-
-@keyframes text-appear{
-    0%{
-        color: transparent;
-    }
-    100%{
-        color: #000000;
-    }
-}
-
 
 .modalDeleteAll{
     &__holder{
@@ -65,7 +37,7 @@
         grid-template-columns: repeat(2, 1fr);
         font-family: 'Raleway', sans-serif;
 
-        animation: modal-create .8s ease-in-out;
+        animation: modal-create .4s ease-in-out;
 
         &_img{
             grid-column: 1/3;
@@ -84,13 +56,11 @@
             align-self: center;
             font-size: 24px;
             cursor: default;
-            color: transparent;
+            color: black;
 
             text-align: center;
             margin: 0 30px;
             width: 80%;
-
-            animation: text-appear .3s ease-in-out 1s forwards;
 
             & p{
                 margin: 0;
@@ -106,7 +76,7 @@
             font-size: 20px;
             font-family: 'Raleway', sans-serif;
             text-transform: capitalize;
-            color: transparent;
+            color: black;
             cursor: pointer;
             animation: button-create 1.1s ease-in-out forwards;
         }
@@ -116,9 +86,7 @@
             border: none;
             background-color: #acacffa8;
             transition: all .4s ease-in-out;
-            // animation: text-appear .3s ease-in-out .7s forwards;
-        
-
+    
             &:hover{
                 background-color: #acacffd3;
             }
@@ -132,10 +100,48 @@
             background-color: rgba(248, 240, 251, 1);
             transition: all .4s ease-in-out;
 
-            // animation: text-appear .3s ease-in-out .7s forwards;
-
             &:hover{
                 background-color: #acacffd3;
+            }
+        }
+    }
+}
+
+@media(max-width: 1220px){
+    .modalDeleteAll{
+        &__holder{
+            width: 50%;
+        }
+    }
+}
+
+@media(max-width: 855px){
+    .modalDeleteAll{
+        &__holder{
+            width: 60%;
+        }
+    }
+}
+
+@media(max-width: 745px){
+    .modalDeleteAll{
+        &__holder{
+            width: 70%;
+
+            &_message{
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+@media(max-width: 550px){
+    .modalDeleteAll{
+        &__holder{
+            width: 80%;
+
+            &_message{
+                font-size: 18px;
             }
         }
     }

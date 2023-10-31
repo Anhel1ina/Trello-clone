@@ -14,6 +14,10 @@
     margin: auto;
 }
 
+.column-card .task-card:last-child{
+    margin-bottom: 30px;
+}
+
 .card-add-button{
     width: 80%;
     // margin: 20px;
@@ -59,5 +63,3 @@
 
     cursor: pointer;
 }
-
-//card

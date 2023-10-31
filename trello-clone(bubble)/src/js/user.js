@@ -58,9 +58,6 @@ export const displayUsers = async (blockToAdd, usersLoaded) => {
                         cardUser.remove()
                     }
                 }
-                for(let user of usersAvasHolder.children){
-                    console.log(user.id)
-                }
             }
         })
     });

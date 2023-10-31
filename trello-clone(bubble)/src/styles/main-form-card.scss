@@ -113,9 +113,12 @@
             font-weight: 500;
             font-size: 14px;
             text-transform: uppercase;
+            margin-left: auto;
 
+            box-shadow: 0 0 5px #4e4e4e46;
             border-radius: 25px;
             border: 2px solid #440f48;
+            
 
             background: transparent;
             cursor: pointer;
@@ -235,7 +238,6 @@
     }
 }
 
-
 .show-search-user{
     display: grid;
 }
@@ -248,10 +250,121 @@
     display: none;
 }
 
-.clicked-color-button{
-    border: 2px solid transparent;
-}
 
 .clicked-user{
     background: linear-gradient(to right, white, #b7b7b778, white);
+}
+
+
+@media (max-width: 1600px){
+    .task-card__main-form{
+        &_holder{
+            width: 50%;
+        }
+    }
+
+    .dropdown{
+        &-content{
+            width: 28%;
+        }
+    }
+}
+
+@media (max-width: 1180px){
+    .task-card__main-form{
+        &_holder{
+            width: 60%;
+        }
+    }
+
+    .dropdown{
+        &-content{
+            width: 33%;
+        }
+    }
+}
+
+@media (max-width: 990px){
+    .task-card__main-form{
+        &_holder{
+            grid-template-rows: 15% 55% 15% 15%;
+        }
+    }
+
+    .form-holder{
+        &__buttons{
+            width: 100%;
+            grid-column: 1/5;
+            margin-bottom: 10px;
+
+            & button{
+                width: 49%;
+                padding: 12px;
+                margin-right: auto;
+            }
+        }
+
+        &__title{
+            height: 70%;
+        }
+    }
+
+    .dropdown{
+        grid-column: 1/4;
+        grid-row: 4/5;
+        &-content{
+            width: 53%;
+        }
+    }
+}
+
+@media (max-width: 745px){
+    .task-card__main-form{
+        &_holder{
+            width: 80%;
+            grid-template-rows: 15% 55% 15% 15%;
+        }
+    }
+
+    .dropdown{
+        &-content{
+            width: 70%;
+        }
+    }
+}
+
+@media (max-width: 745px){
+    .task-card__main-form{
+        &_holder{
+            width: 90%;
+            grid-template-rows: 15% 45% 10% 15% 15%;
+        }
+    }
+
+    .form-holder__title,
+    .form-holder__description{
+        grid-column: 1/4;
+    }
+
+    .form-holder__palette{
+        grid-row: 3/4;
+        grid-column: 1/4;
+        display: flex;
+
+        & button{
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+
+    .form-holder__buttons{
+        grid-row: 4/5;
+    }
+
+    .dropdown{
+        grid-row: 5/6;
+        &-content{
+            width: 70%;
+        }
+    }
 }

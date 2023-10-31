@@ -1,6 +1,5 @@
 body{
     margin: 0;
-    // background: url(../images/blur-back.jpg) top/cover no-repeat;
     background-color: #acacffbe;
     height: 100vh;
 }
@@ -24,6 +23,17 @@ body{
         background-color: rgba(248, 240, 251, 0.404);
         border-radius: 50px 50px 0 0;
         box-shadow: 0 -3px 30px #13243b;
+    }
+}
+
+@media(max-width: 745px){
+    .wrapper{
+        grid-template-rows: 15% 85%;
+    
+        &__header{
+            grid-template-columns: 100%;
+            grid-template-rows: repeat(2, 1fr);
+        }
     }
 }
 

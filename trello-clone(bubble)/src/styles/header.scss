@@ -31,3 +31,46 @@
         box-sizing: border-box;
     }
 }
+
+@media(max-width: 1540px) {
+    .datetime{
+        width: 30vw;
+    }
+}
+
+@media(max-width: 1180px) {
+    .datetime{
+        width: 35vw;
+    }
+}
+
+@media(max-width: 990px) {
+    .datetime{
+        width: 50vw;
+    }
+}
+
+@media(max-width: 745px) {
+    .datetime{
+        width: 50vw;
+    }
+}
+
+@media(max-width: 745px) {
+    .header-block__logo{
+        justify-self: center;
+        margin-top: 10px;
+    }
+
+    .datetime{
+        justify-self: center;
+        width: 80%;
+    }
+}
+
+@media(max-width: 550px) {
+    .datetime{
+        width: 100%;
+        font-size: 18px;
+    }
+}

@@ -50,3 +50,33 @@
         background-position: right;
     }
 }
+
+@media(max-width: 1540px) {
+    .add-column-button{
+        min-width: 30vw;
+    }
+}
+
+@media(max-width: 1180px) {
+    .add-column-button{
+        min-width: 35vw;
+    }
+}
+
+@media(max-width: 990px) {
+    .add-column-button{
+        min-width: 45vw;
+    }
+}
+
+@media(max-width: 745px) {
+    .add-column-button{
+        min-width: 60vw;
+    }
+}
+
+@media(max-width: 550px) {
+    .add-column-button{
+        min-width: 80vw;
+    }
+}
